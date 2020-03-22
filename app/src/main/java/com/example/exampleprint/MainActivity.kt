@@ -46,63 +46,76 @@ class MainActivity : AppCompatActivity(),Runnable {
                 try {
                     mBluetoothSocket?.let {
                         val os = it.outputStream
-                        var BILL = ""
-                        BILL = ("                   XXXX MART    \n"
-                                + "                   XX.AA.BB.CC.     \n " +
-                                "                 NO 25 ABC ABCDE    \n" +
-                                "                  XXXXX YYYYYY      \n" +
-                                "                   MMM 590019091      \n")
-                        BILL = (BILL
-                                + "-----------------------------------------------\n")
-                        BILL += String.format(
-                            "%1$-10s %2$10s %3$13s %4$10s",
-                            "Item",
-                            "Qty",
-                            "Rate",
-                            "Totel"
-                        )
-                        BILL += "\n"
-                        BILL = (BILL
-                                + "-----------------------------------------------")
-                        BILL = "$BILL\n " + String.format(
-                            "%1$-10s %2$10s %3$11s %4$10s",
-                            "item-001",
-                            "5",
-                            "10",
-                            "50.00"
-                        )
-                        BILL = "$BILL\n " + String.format(
-                            "%1$-10s %2$10s %3$11s %4$10s",
-                            "item-002",
-                            "10",
-                            "5",
-                            "50.00"
-                        )
-                        BILL = "$BILL\n " + String.format(
-                            "%1$-10s %2$10s %3$11s %4$10s",
-                            "item-003",
-                            "20",
-                            "10",
-                            "200.00"
-                        )
-                        BILL = "$BILL\n " + String.format(
-                            "%1$-10s %2$10s %3$11s %4$10s",
-                            "item-004",
-                            "50",
-                            "10",
-                            "500.00"
-                        )
-                        BILL = (BILL
-                                + "\n-----------------------------------------------")
-                        BILL = "$BILL\n\n "
-                        BILL = "$BILL                   Total Qty:      85\n"
-                        BILL = "$BILL                   Total Value:     700.00\n"
-                        BILL = (BILL
-                                + "-----------------------------------------------\n")
+                        var BILL = ("       KAWAN SUARA \n"+
+                                "       Gang Kamboja No 6 \n" +
+                                "       Surabaya \n" +
+                                "       IG : kawan_suara \n")
+                        BILL = ("$BILL--------------------------------\n")
+                        BILL = ("$BILL\n         \n"+
+                                "Tgl Sewa    : 22 Maret 2020 \n"+
+                                "Tgl Kembali : 25 Maret 2020 \n"+
+                                "Admin       : Sahrul\n")
+
+                        BILL = ("$BILL\n#Jenis Barang Sewa\n"+
+                                " 1. HT (1) \n"+
+                                " 2. Charge HT (2)  \n")
+
+                        BILL = ("$BILL\n#Nama Penyewa \n"+
+                                " NIK  : 3423443434222001\n"+
+                                " Nama : Ganda Tadio Surya\n"+
+                                " Email: gandatadyosurya@gmail.com\n")
                         BILL = "$BILL\n\n "
 
 
-                        val printdata = "gandatadyosurya \n Hello World"
+//                        BILL += String.format(
+//                            "%1$-10s %2$10s %3$13s %4$10s",
+//                            "Item",
+//                            "Qty",
+//                            "Rate",
+//                            "Totel"
+//                        )
+//                        BILL += "\n"
+//                        BILL = (BILL
+//                                + "-----------------------------------------------")
+//                        BILL = "$BILL\n " + String.format(
+//                            "%1$-10s %2$10s %3$11s %4$10s",
+//                            "item-001",
+//                            "5",
+//                            "10",
+//                            "50.00"
+//                        )
+//                        BILL = "$BILL\n " + String.format(
+//                            "%1$-10s %2$10s %3$11s %4$10s",
+//                            "item-002",
+//                            "10",
+//                            "5",
+//                            "50.00"
+//                        )
+//                        BILL = "$BILL\n " + String.format(
+//                            "%1$-10s %2$10s %3$11s %4$10s",
+//                            "item-003",
+//                            "20",
+//                            "10",
+//                            "200.00"
+//                        )
+//                        BILL = "$BILL\n " + String.format(
+//                            "%1$-10s %2$10s %3$11s %4$10s",
+//                            "item-004",
+//                            "50",
+//                            "10",
+//                            "500.00"
+//                        )
+//                        BILL = (BILL
+//                                + "\n-----------------------------------------------")
+//                        BILL = "$BILL\n\n "
+//                        BILL = "$BILL                   Total Qty:      85\n"
+//                        BILL = "$BILL                   Total Value:     700.00\n"
+//                        BILL = (BILL
+//                                + "-----------------------------------------------\n")
+//                        BILL = "$BILL\n\n "
+//
+//
+//                        val printdata = "gandatadyosurya \n Hello World"
                         os.write(BILL.toByteArray())
 
                         //This is printer specific code you can comment ==== > Start
