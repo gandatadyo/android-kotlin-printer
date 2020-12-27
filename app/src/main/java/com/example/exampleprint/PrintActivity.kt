@@ -6,17 +6,27 @@ import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothSocket
 import android.content.Intent
+import android.content.pm.ModuleInfo
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import com.example.exampleprint.modul.ModuleGlobal
+import com.example.exampleprint.utils.DeviceListActivity
+import com.example.exampleprint.utils.UnicodeFormatter
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.activity_print.*
 import java.io.IOException
 import java.nio.ByteBuffer
 import java.util.*
 
-class MainActivity : AppCompatActivity(),Runnable {
+class PrintActivity : AppCompatActivity(),Runnable {
+
+    val modulGlobal = ModuleGlobal()
 
     private val REQUEST_CONNECT_DEVICE = 1
     private val REQUEST_ENABLE_BT = 2
@@ -25,13 +35,77 @@ class MainActivity : AppCompatActivity(),Runnable {
     private var mBluetoothSocket: BluetoothSocket? = null
     var mBluetoothDevice: BluetoothDevice? = null
 
+    var daterent:String = ""
+    var namecustomer:String = ""
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_print)
+
+        daterent = intent.getStringExtra("daterent")
+        namecustomer = intent.getStringExtra("namecustomer")
 
         btnScan.setOnClickListener {ScanDevice()}
         btnPrint.setOnClickListener { PrintDocument() }
         btnDisable.setOnClickListener { DisablePrint() }
+        btnTest.setOnClickListener { GetDataPrint() }
+    }
+
+    private fun GetDataPrint(){
+        if(!modulGlobal.isNetworkAvailable(this)) {
+            Toast.makeText(this,getString(R.string.resulterrorconnection),Toast.LENGTH_LONG).show()
+        }else {
+            val queue = Volley.newRequestQueue(this)
+            val url =  modulGlobal.GetIPServer(this) + "/api/get_printdata"
+            val postRequest = object : StringRequest(
+                Method.POST, url,
+                Response.Listener<String> { response ->
+                    Handle_GetDataPrint(response)
+                }, Response.ErrorListener {
+                    Toast.makeText(this,getString(R.string.resulterror),Toast.LENGTH_LONG).show()
+                }) {
+                override fun getParams(): Map<String, String> {
+                    val params = HashMap<String, String>()
+//                    params["username"] = username
+//                    params["password"] = password
+                    return params
+                }
+            }
+            queue.add(postRequest)
+        }
+    }
+
+    private fun Handle_GetDataPrint(response:String){
+        val t: Thread = object : Thread() {
+            override fun run() {
+                try {
+                    mBluetoothSocket?.let {
+                        val os = it.outputStream
+                        os.write(response.toByteArray())
+
+                        //This is printer specific code you can comment ==== > Start
+                        // Setting height
+                        val gs = 29
+                        os.write(intToByteArray(gs).toInt())
+                        val h = 104
+                        os.write(intToByteArray(h).toInt())
+                        val n = 162
+                        os.write(intToByteArray(n).toInt())
+                        // Setting Width
+                        val gs_width = 29
+                        os.write(intToByteArray(gs_width).toInt())
+                        val w = 119
+                        os.write(intToByteArray(w).toInt())
+                        val n_width = 2
+                        os.write(intToByteArray(n_width).toInt())
+                    }
+                } catch (e: Exception) {
+//                    Log.e("MainActivity", "Exe ", e)
+                }
+            }
+        }
+        t.start()
     }
 
     private fun DisablePrint(){
@@ -39,6 +113,8 @@ class MainActivity : AppCompatActivity(),Runnable {
             it.disable()
         }
     }
+
+
 
     private fun PrintDocument() {
         val t: Thread = object : Thread() {
@@ -51,8 +127,7 @@ class MainActivity : AppCompatActivity(),Runnable {
                                 "       Surabaya \n" +
                                 "       IG : kawan_suara \n")
                         BILL = ("$BILL--------------------------------\n")
-                        BILL = ("$BILL\n         \n"+
-                                "Tgl Sewa    : 22 Maret 2020 \n"+
+                        BILL = (BILL+"Tgl Sewa    : $daterent \n"+
                                 "Tgl Kembali : 25 Maret 2020 \n"+
                                 "Admin       : Sahrul\n")
 
@@ -62,7 +137,7 @@ class MainActivity : AppCompatActivity(),Runnable {
 
                         BILL = ("$BILL\n#Nama Penyewa \n"+
                                 " NIK  : 3423443434222001\n"+
-                                " Nama : Ganda Tadio Surya\n"+
+                                " Nama : $namecustomer\n"+
                                 " Email: gandatadyosurya@gmail.com\n")
                         BILL = "$BILL\n\n "
 
@@ -153,7 +228,7 @@ class MainActivity : AppCompatActivity(),Runnable {
                     startActivityForResult(enableBtIntent,REQUEST_ENABLE_BT)
                 } else {
                     ListPairedDevices()
-                    val connectIntent = Intent(this@MainActivity, DeviceListActivity::class.java)
+                    val connectIntent = Intent(this@PrintActivity, DeviceListActivity::class.java)
                     startActivityForResult(connectIntent,REQUEST_CONNECT_DEVICE)
                 }
             }
@@ -190,10 +265,10 @@ class MainActivity : AppCompatActivity(),Runnable {
             }
             REQUEST_ENABLE_BT -> if (mResultCode == Activity.RESULT_OK) {
                 ListPairedDevices()
-                val connectIntent = Intent(this@MainActivity, DeviceListActivity::class.java)
+                val connectIntent = Intent(this@PrintActivity, DeviceListActivity::class.java)
                 startActivityForResult(connectIntent, REQUEST_CONNECT_DEVICE)
             } else {
-                Toast.makeText(this@MainActivity, "Message", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@PrintActivity, "Message", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -221,7 +296,7 @@ class MainActivity : AppCompatActivity(),Runnable {
     @SuppressLint("HandlerLeak")
     private val mHandler: Handler = object : Handler() {
         override fun handleMessage(msg: Message) {
-            Toast.makeText(this@MainActivity, "DeviceConnected", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@PrintActivity, "DeviceConnected", Toast.LENGTH_SHORT).show()
         }
     }
 

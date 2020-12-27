@@ -1,4 +1,4 @@
-package com.example.exampleprint
+package com.example.exampleprint.utils
 
 import android.app.Activity
 import android.bluetooth.BluetoothAdapter
@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.exampleprint.R
 import kotlinx.android.synthetic.main.activity_device_list.*
 
 class DeviceListActivity : AppCompatActivity() {

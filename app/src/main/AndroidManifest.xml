@@ -2,8 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.exampleprint">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -11,9 +14,22 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".DeviceListActivity"></activity>
-        <activity android:name=".MainActivity">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".HistoryOrderActivity"
+            android:label="Riwayat Transaksi" />
+        <activity
+            android:name=".MasterItemActivity"
+            android:label="Master Item" />
+        <activity
+            android:name=".CreateOrderActivity"
+            android:label="Buat Nota" />
+        <activity android:name=".MenuActivity" />
+        <activity android:name=".PrintActivity" />
+        <activity android:name=".utils.DeviceListActivity" />
+        <activity android:name=".TestingActivity" />
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

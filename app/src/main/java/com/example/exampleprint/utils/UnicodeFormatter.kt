@@ -1,4 +1,4 @@
-package com.example.exampleprint
+package com.example.exampleprint.utils
 
 
 object UnicodeFormatter {
@@ -14,7 +14,9 @@ object UnicodeFormatter {
     fun charToHex(c: Char): String { // Returns hex String representation of char c
         val hi = (c.toInt() ushr 8).toByte()
         val lo = (c.toInt() and 0xff).toByte()
-        return byteToHex(hi) + byteToHex(lo)
+        return byteToHex(hi) + byteToHex(
+            lo
+        )
     }
 
     infix fun Byte.shl(that: Int): Int = this.toInt().shl(that)
