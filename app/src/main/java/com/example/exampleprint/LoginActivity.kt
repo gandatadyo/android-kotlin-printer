@@ -23,8 +23,8 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-//        this.supportActionBar?.hide()
-        this.supportActionBar?.title="Login"
+        this.supportActionBar?.hide()
+//        this.supportActionBar?.title="Login"
 
 //        progressdlg.visibility = View.GONE
 

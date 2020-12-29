@@ -10,25 +10,38 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ConfirmationInvoice"
+            android:label="Print Invoice"/>
         <activity
-            android:name=".HistoryOrderActivity"
-            android:label="Riwayat Transaksi" />
+            android:name=".ReportTransaction"
+            android:label="Laporan Transaksi" />
         <activity
-            android:name=".MasterItemActivity"
-            android:label="Master Item" />
+            android:name=".InputInvoiceProduct"
+            android:label="Pilih Barang Yang Disewa" />
         <activity
-            android:name=".CreateOrderActivity"
-            android:label="Buat Nota" />
+            android:name=".InputInvoice"
+            android:label="Buat Transaksi" />
+        <activity
+            android:name=".InputCustomer"
+            android:label="Input Customer" />
+        <activity
+            android:name=".InputProduct"
+            android:label="Input Barang" />
+        <activity
+            android:name=".MasterCustomer"
+            android:label="Master Customer" />
+        <activity
+            android:name=".MasterProduct"
+            android:label="Master Barang" />
         <activity android:name=".MenuActivity" />
         <activity android:name=".PrintActivity" />
         <activity android:name=".utils.DeviceListActivity" />
-        <activity android:name=".TestingActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

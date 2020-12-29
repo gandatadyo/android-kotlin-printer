@@ -14,32 +14,40 @@ data class ModelListAdmin(
     var TimeUpdated: String?
 ): Parcelable
 
+//data list main
 @Parcelize
-data class ModelListTrans(
-    var ID: Int?,
-    var DocNumber: String?,
-    var DocDate: String?,
-    val IDAdmin: String?,
-    val NameAdmin: String?,
-    var CustomerName: String?,
-    var CustomerTelp: String?,
-    var CustomerAddress: String?,
-    var Amount: Double?,
-    var GrandTotal: Double?,
-    var TimeCreated: String?,
-    var TimeUpdated: String?
+data class ModelCustomer(
+    var ID: String?,
+    var NameCustomer: String?,
+    var Email: String?,
+    val Telp: String?,
+    var Address: String?
 ): Parcelable
 
 @Parcelize
-data class ModelListProduct(
-    var ID: Int?,
-    var CodeProduct: String?,
+data class ModelProduct(
+    var ID: String?,
     var NameProduct: String?,
-    val Description: String?,
-    var Price: Double?,
-    var Img: String?,
-    var isDelete: Int?,
-    var TimeCreated: String?,
-    var TimeUpdated: String?
+    var Description: String?,
+    var Price: String?
 ): Parcelable
 
+@Parcelize
+data class ModelInputProduct(
+    var ID: String?,
+    var NameProduct: String?,
+    var Qty: Int?,
+    var Price: Double?,
+    var Total: Double?
+): Parcelable
+
+@Parcelize
+data class ModelListTransaction(
+    var ID: String?,
+    var DocNumber: String?,
+    var NameCustomer: String?,
+    var RentDate: String?,
+    var ReturnDate: String?,
+    var GrandTotal: String?,
+    var TimeCreated: String?
+): Parcelable

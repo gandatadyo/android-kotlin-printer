@@ -8,43 +8,58 @@
     android:padding="10dp"
     tools:context=".MenuActivity">
 
-    <TextView
-        android:id="@+id/textView4"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:text="Aplikasi Rental HT"
-        android:textColor="@android:color/black"
-        android:textSize="16dp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-    <Button
-        android:id="@+id/btnMaster"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Master Barang" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/btnCreateOrder"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Buat Nota" />
+            <Button
+                android:id="@+id/btnMasterCustomer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Data Customer"
+                android:textAlignment="textStart" />
 
-    <Button
-        android:id="@+id/btnHistoryOrder"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Riwayat Transaksi" />
+            <Button
+                android:id="@+id/btnMasterProduct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Data Barang"
+                android:textAlignment="textStart" />
 
-    <Button
-        android:id="@+id/btnTestPrint"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Test Print" />
+            <Button
+                android:id="@+id/btnCreateInvoice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Buat Pemesanan"
+                android:textAlignment="textStart" />
 
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="keluar" />
+            <Button
+                android:id="@+id/btnReportTransaction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Laporan Transaksi"
+                android:textAlignment="textStart" />
+
+            <Button
+                android:id="@+id/btnLogout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Logout"
+                android:textAlignment="textStart" />
+
+            <Button
+                android:id="@+id/btnTestPrint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Test Print" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
 </LinearLayout>

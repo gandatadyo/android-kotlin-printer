@@ -220,7 +220,7 @@ class PrintActivity : AppCompatActivity(),Runnable {
     private fun ScanDevice(){
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
         if (mBluetoothAdapter == null) {
-            Toast.makeText(this, "Message1", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Bluetooh Not Found", Toast.LENGTH_SHORT).show()
         } else {
             mBluetoothAdapter?.let {
                 if (it.isEnabled) {
