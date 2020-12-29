@@ -26,7 +26,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class InputInvoice : AppCompatActivity() {
-    val modulGlobal= ModuleGlobal()
+    private val modulGlobal= ModuleGlobal()
     // variable for search customer
     private lateinit var viewSearchCustomer:View
     private lateinit var dialogSearchCustomer:BottomSheetDialog

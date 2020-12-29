@@ -115,10 +115,12 @@ class AdapterTransaction(private val listData: ArrayList<ModelListTransaction>, 
             val lblcustomer: TextView = itemView.findViewById(R.id.lblNameCustomer_trans)
             val lblgrantotal: TextView = itemView.findViewById(R.id.lblGrandTotal_trans)
             val lbltimecreate: TextView = itemView.findViewById(R.id.lblTimeCreate_trans)
+            val lblTimeRent: TextView = itemView.findViewById(R.id.lblTimeRent_trans)
             lbldocnumber.text = data.DocNumber
             lblcustomer.text = data.NameCustomer
-            lblgrantotal.text = data.GrandTotal
-            lbltimecreate.text = data.TimeCreated
+            lblgrantotal.text = "Rp. "+data.GrandTotal
+            lbltimecreate.text = "Tanggal Buat "+data.TimeCreated
+            lblTimeRent.text = "Waktu Sewa "+data.TimeRent
             card.setOnClickListener { clickListener(data)}
         }
     }

@@ -4,6 +4,7 @@ import android.app.Activity
 import android.bluetooth.BluetoothAdapter
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.ArrayAdapter
 import android.widget.TextView
@@ -13,12 +14,13 @@ import com.example.exampleprint.R
 import kotlinx.android.synthetic.main.activity_device_list.*
 
 class DeviceListActivity : AppCompatActivity() {
-
     private var mBluetoothAdapter: BluetoothAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_device_list)
+        supportActionBar?.setHomeButtonEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         setResult(Activity.RESULT_CANCELED)
         paired_devices.onItemClickListener = mDeviceClickListener
@@ -41,6 +43,16 @@ class DeviceListActivity : AppCompatActivity() {
                 val adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, arrayList)
                 paired_devices.adapter = adapter
             }
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 

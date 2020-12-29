@@ -49,5 +49,6 @@ data class ModelListTransaction(
     var RentDate: String?,
     var ReturnDate: String?,
     var GrandTotal: String?,
-    var TimeCreated: String?
+    var TimeCreated: String?,
+    var TimeRent: String?
 ): Parcelable

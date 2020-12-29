@@ -14,7 +14,7 @@ import org.json.JSONObject
 import java.util.HashMap
 
 class InputCustomer : AppCompatActivity() {
-    val modulGlobal=ModuleGlobal()
+    private val modulGlobal=ModuleGlobal()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

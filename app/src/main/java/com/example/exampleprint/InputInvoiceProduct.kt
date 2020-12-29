@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.example.exampleprint.database.DatabaseModul
 import com.example.exampleprint.modul.*
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.Gson
@@ -22,7 +23,6 @@ import kotlinx.android.synthetic.main.view_inputqty.view.*
 import org.json.JSONArray
 import org.json.JSONObject
 import java.util.*
-
 
 class InputInvoiceProduct : AppCompatActivity()  {
     private var amountopen : Double = 0.0
@@ -208,6 +208,8 @@ class InputInvoiceProduct : AppCompatActivity()  {
         }else if(!CheckQtyNothing()) {
             Toast.makeText(this,"Tidak ada produk yang dipesan", Toast.LENGTH_LONG).show()
         }else {
+            val dataprofile :ModelListAdmin = DatabaseModul().GetDataProfle(this)
+
             val queue = Volley.newRequestQueue(this)
             val url =  modulGlobal.GetIPServer(this) + "/api/create_transaction"
             val postRequest = object : StringRequest(
@@ -219,6 +221,8 @@ class InputInvoiceProduct : AppCompatActivity()  {
                 }) {
                 override fun getParams(): Map<String, String> {
                     val params = HashMap<String, String>()
+                    params["idadmin"] = dataprofile.ID.toString()
+
                     params["name"] = contentValueGlobal.getAsString("namecustomer")
                     params["email"] = contentValueGlobal.getAsString("email")
                     params["telp"] = contentValueGlobal.getAsString("telp")
