@@ -42,8 +42,8 @@ class LoginActivity : AppCompatActivity() {
     private fun HandleResponse(activity: Activity, response: String){
         val status = JSONObject(response).getString("status")
         val message = JSONObject(response).getString("message")
-        val data = JSONObject(response).getString("data")
         if(status=="true"){
+            val data = JSONObject(response).getString("data")
             if (SaveAccount(data)) {
                 startActivity(Intent(this, MenuActivity::class.java))
                 finish()

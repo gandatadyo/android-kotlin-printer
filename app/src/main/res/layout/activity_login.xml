@@ -131,7 +131,7 @@
                                 android:ems="10"
                                 android:gravity="top"
                                 android:hint="Password anda"
-                                android:inputType="textEmailAddress"
+                                android:inputType="textPassword"
                                 android:textSize="14dp" />
                         </androidx.cardview.widget.CardView>
                     </LinearLayout>

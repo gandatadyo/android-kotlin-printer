@@ -41,7 +41,8 @@
             android:label="Master Barang" />
         <activity android:name=".MenuActivity" />
         <activity android:name=".PrintActivity" />
-        <activity android:name=".utils.DeviceListActivity" />
+        <activity android:name=".utils.DeviceListActivity"
+            android:label="List Perangkat"/>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

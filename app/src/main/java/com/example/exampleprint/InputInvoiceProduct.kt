@@ -28,6 +28,7 @@ class InputInvoiceProduct : AppCompatActivity()  {
     private var amountopen : Double = 0.0
     private var amountsettled : Double = 0.0
     private var amountbalance : Double = 0.0
+    private var amountdayrent : Int = 0
 
     private val modulGlobal = ModuleGlobal()
     private var dataProduct =  arrayListOf<ModelInputProduct>()
@@ -53,6 +54,7 @@ class InputInvoiceProduct : AppCompatActivity()  {
 
         lblDateRent_InputInvoice.text = param.getAsString("rentdate")
         lblAmountDayRent_InputInvoice.text = param.getAsString("amountdayrent")+" Hari"
+        amountdayrent = 0
 
         linearLayoutManager = LinearLayoutManager(this)
         recycler_InputInvoiceProduct.layoutManager = linearLayoutManager
